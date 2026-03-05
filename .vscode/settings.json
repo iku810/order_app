@@ -7,5 +7,6 @@
     "source.fixAll": "always",
     "source.organizeImports": "always"
   },
-  "cSpell.words": ["cupertino", "pubspec", "Schyler", "unawaited"]
+  "cSpell.words": ["cupertino", "pubspec", "Schyler", "unawaited"],
+  "geminicodeassist.rules": "Follow docs/ai/rules.md for project rules"
 }
