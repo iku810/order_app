@@ -1,32 +1,17 @@
-class Store {
-  const Store({
+class StoreDetail {
+  const StoreDetail({
     required this.id,
     required this.name,
-    required this.startOfDay,
-    required this.tablesCount,
-    required this.createdAt,
-    required this.posStoreId,
-    this.suspendAt,
     this.tables,
   });
 
   final String id;
   final String name;
-  final String startOfDay;
-  final int tablesCount;
-  final DateTime? suspendAt;
-  final DateTime createdAt;
-  final String posStoreId;
-  final List<StoreTable>? tables;
+  final List<Table>? tables;
 }
 
-class StoreList {
-  const StoreList(this.values);
-  final List<Store> values;
-}
-
-class StoreTable {
-  const StoreTable({
+class Table {
+  const Table({
     required this.id,
     required this.name,
     this.category,
@@ -37,4 +22,23 @@ class StoreTable {
   final String name;
   final String? category;
   final int? sortNo;
+}
+
+class Store {
+  const Store({
+    required this.id,
+    required this.name,
+  });
+
+  final String id;
+  final String name;
+}
+
+class StoreList {
+
+  factory StoreList.empty() {
+    return const StoreList([]);
+  }
+  const StoreList(this.values);
+  final List<Store> values;
 }

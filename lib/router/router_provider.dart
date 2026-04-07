@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 
 import '../features/login/presentation/auth_state_notifier.dart';
 import '../features/login/presentation/login_route.dart';
-import '../features/table_list/presentation/table_list_route.dart';
+import '../features/store/presentation/store_list_route.dart';
 import '../shared/auth/domain/entity/auth_state.dart';
 import 'routes.dart';
 
@@ -18,7 +18,7 @@ final routerProvider = Provider<GoRouter>((ref) {
       switch (authState) {
         case Authenticated():
           if (isLoginShown) {
-            final tableLocationRoute = TableListRoute().location;
+            final tableLocationRoute = StoreListRoute().location;
             return tableLocationRoute;
           }
         case UnAuthenticated():

@@ -1,5 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
+import '../../../domain/store.dart';
+
 part 'store_response.g.dart';
 
 @JsonSerializable()
@@ -30,6 +32,16 @@ class StoreResponse {
   Map<String, dynamic> toJson() => _$StoreResponseToJson(this);
 }
 
+extension StoreResponseMapper on StoreResponse {
+  Store toStore() => Store(id: id, name: name);
+
+  StoreDetail toStoreDetail() => StoreDetail(
+        id: id,
+        name: name,
+        tables: tables?.map((t) => t.toTable()).toList(),
+      );
+}
+
 @JsonSerializable()
 class StoreTableResponse {
   const StoreTableResponse({
@@ -48,4 +60,8 @@ class StoreTableResponse {
   final int? sortNo;
 
   Map<String, dynamic> toJson() => _$StoreTableResponseToJson(this);
+}
+
+extension StoreTableResponseMapper on StoreTableResponse {
+  Table toTable() => Table(id: id, name: name, category: category, sortNo: sortNo);
 }
