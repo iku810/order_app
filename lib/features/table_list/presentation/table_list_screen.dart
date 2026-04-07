@@ -2,6 +2,7 @@ import 'package:flutter/material.dart' hide Table;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../domain/table_state.dart';
+import 'check_in_route.dart';
 import 'table_state_list_notifier.dart';
 
 class TableListScreen extends ConsumerWidget {
@@ -34,7 +35,7 @@ class TableListScreen extends ConsumerWidget {
               itemCount: tables.length,
               itemBuilder: (context, index) {
                 final table = tables[index];
-                return _TableListTile(table: table);
+                return _TableListTile(storeId: storeId, table: table);
               },
             ),
           );
@@ -45,8 +46,9 @@ class TableListScreen extends ConsumerWidget {
 }
 
 class _TableListTile extends StatelessWidget {
-  const _TableListTile({required this.table, super.key});
+  const _TableListTile({required this.storeId, required this.table, super.key});
 
+  final String storeId;
   final TableState table;
 
   @override
@@ -65,7 +67,13 @@ class _TableListTile extends StatelessWidget {
       ),
       trailing: const Icon(Icons.chevron_right),
       onTap: () {
-        // TODO: テーブル詳細・注文画面への遷移
+        switch (table) {
+          case UncheckedInTable():
+            CheckInRoute(storeId: storeId, tableId: table.id).go(context);
+          case CheckedInTable():
+            // TODO: 注文履歴画面への遷移
+            break;
+        }
       },
     );
   }
