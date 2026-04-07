@@ -1,5 +1,5 @@
 import '../features/check_in/providers/check_in_repository_provider.dart';
-import '../features/menu_list/providers/menu_repository_provider.dart';
+import '../features/order/providers/menu_repository_provider.dart';
 import '../features/order/providers/order_repository_provider.dart';
 import '../features/order_history/providers/order_history_repository_provider.dart';
 import '../features/store/providers/store_repository_provider.dart';

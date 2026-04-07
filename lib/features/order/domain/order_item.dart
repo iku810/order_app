@@ -1,12 +1,4 @@
-class Order {
-  const Order({
-    required this.items,
-    required this.orderPrints,
-  });
-
-  final List<OrderItem> items;
-  final OrderPrints orderPrints;
-}
+import 'menu.dart';
 
 class OrderItem {
   const OrderItem({
@@ -34,21 +26,14 @@ class SellingPrice {
     required this.taxType,
   });
 
-  final String amount;
-  final String tax;
+  final int amount;
+  final Tax tax;
   final int taxRate;
-  final String taxType;
+  final TaxType taxType;
 }
 
 class Discount {
   const Discount({required this.rate});
 
   final String rate;
-}
-
-class OrderPrints {
-  const OrderPrints({required this.kitchenTicket, required this.orderSlip});
-
-  final bool kitchenTicket;
-  final bool orderSlip;
 }

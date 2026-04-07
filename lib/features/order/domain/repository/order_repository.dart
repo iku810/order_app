@@ -1,8 +1,7 @@
-import '../order.dart';
-import '../order_result.dart';
+import '../order_item.dart';
 
 abstract class OrderRepository {
-  Future<OrderResult> createOrder({
+  Future<void> createOrder({
     required String tableUseId,
     required List<OrderItem> items,
     bool kitchenTicket = false,

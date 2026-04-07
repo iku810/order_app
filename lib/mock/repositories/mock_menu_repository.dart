@@ -1,9 +1,9 @@
-import '../../features/menu_list/domain/menu.dart';
-import '../../features/menu_list/domain/repository/menu_repository.dart';
+import '../../features/order/domain/menu.dart';
+import '../../features/order/domain/repository/menu_repository.dart';
 
 class MockMenuRepository implements MenuRepository {
-  static const _menus = [
-    Menu(
+  static final _menus = [
+    Menu.create(
       id: 'menu-001',
       name: '唐揚げ',
       kana: 'カラアゲ',
@@ -15,10 +15,10 @@ class MockMenuRepository implements MenuRepository {
       isOpenPrice: false,
       createdIn: 'pos',
       prices: [
-        const Price(taxRate: 10, taxType: 'inclusive', amount: '500', tax: '45', primary: true),
+        const Price(taxRate: 10, taxType: TaxType.normal, amount: 500, tax: Tax.include, primary: true),
       ],
     ),
-    Menu(
+    Menu.create(
       id: 'menu-002',
       name: '枝豆',
       kana: 'エダマメ',
@@ -30,10 +30,10 @@ class MockMenuRepository implements MenuRepository {
       isOpenPrice: false,
       createdIn: 'pos',
       prices: [
-        const Price(taxRate: 10, taxType: 'inclusive', amount: '300', tax: '27', primary: true),
+        const Price(taxRate: 10, taxType: TaxType.normal, amount: 300, tax: Tax.include, primary: true),
       ],
     ),
-    Menu(
+    Menu.create(
       id: 'menu-003',
       name: 'ポテトフライ',
       kana: 'ポテトフライ',
@@ -45,10 +45,10 @@ class MockMenuRepository implements MenuRepository {
       isOpenPrice: false,
       createdIn: 'pos',
       prices: [
-        const Price(taxRate: 10, taxType: 'inclusive', amount: '400', tax: '36', primary: true),
+        const Price(taxRate: 10, taxType: TaxType.normal, amount: 400, tax: Tax.include, primary: true),
       ],
     ),
-    Menu(
+    Menu.create(
       id: 'menu-010',
       name: 'ビール(生)',
       kana: 'ビール(ナマ)',
@@ -60,10 +60,10 @@ class MockMenuRepository implements MenuRepository {
       isOpenPrice: false,
       createdIn: 'pos',
       prices: [
-        const Price(taxRate: 10, taxType: 'inclusive', amount: '600', tax: '54', primary: true),
+        const Price(taxRate: 10, taxType: TaxType.normal, amount: 600, tax: Tax.include, primary: true),
       ],
     ),
-    Menu(
+    Menu.create(
       id: 'menu-011',
       name: 'ハイボール',
       kana: 'ハイボール',
@@ -75,10 +75,10 @@ class MockMenuRepository implements MenuRepository {
       isOpenPrice: false,
       createdIn: 'pos',
       prices: [
-        const Price(taxRate: 10, taxType: 'inclusive', amount: '500', tax: '45', primary: true),
+        const Price(taxRate: 10, taxType: TaxType.normal, amount: 500, tax: Tax.include, primary: true),
       ],
     ),
-    Menu(
+    Menu.create(
       id: 'menu-012',
       name: 'コーラ',
       kana: 'コーラ',
@@ -90,7 +90,7 @@ class MockMenuRepository implements MenuRepository {
       isOpenPrice: false,
       createdIn: 'pos',
       prices: [
-        const Price(taxRate: 10, taxType: 'inclusive', amount: '300', tax: '27', primary: true),
+        const Price(taxRate: 10, taxType: TaxType.normal, amount: 300, tax: Tax.include, primary: true),
       ],
     ),
   ];

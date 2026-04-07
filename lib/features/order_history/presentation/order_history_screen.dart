@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../order/presentation/order_route.dart';
 import 'order_history_notifier.dart';
 
 class OrderHistoryScreen extends ConsumerWidget {
@@ -53,7 +54,8 @@ class OrderHistoryScreen extends ConsumerWidget {
               Expanded(
                 child: OutlinedButton(
                   onPressed: () {
-                    // TODO: 注文画面への遷移
+                    OrderRoute(storeId: storeId, tableUseId: tableUseId)
+                        .go(context);
                   },
                   child: const Text('追加'),
                 ),
