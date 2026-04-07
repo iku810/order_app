@@ -1,93 +1,217 @@
-class TableUse {
-  const TableUse({
-    required this.id,
-    required this.storeId,
-    required this.tables,
+import 'table.dart';
+import 'table_exceptions.dart';
+
+sealed class TableUse {
+  TableUse._({required this.tables, required this.id});
+
+  factory TableUse.from({
+    required List<Table> tables,
+    required String id,
+    required TableUseStatus status,
+    required int number,
+    required DateTime started,
+    required String tableChargePerPerson,
+    required int serviceChargeRate,
+    required String totalPrice,
+  }) {
+    return switch (status) {
+      TableUseStatus.using => TableInUse.from(
+          tables: tables,
+          id: id,
+          number: number,
+          started: started,
+          tableChargePerPerson: tableChargePerPerson,
+          serviceChargeRate: serviceChargeRate,
+          totalPrice: totalPrice,
+        ),
+      TableUseStatus.closed => TableClosed.from(tables: tables, id: id),
+    };
+  }
+
+  final List<Table> tables;
+  final String id;
+}
+
+class TableClosed extends TableUse {
+  TableClosed._({required super.tables, required super.id}) : super._();
+
+  factory TableClosed.from({required List<Table> tables, required String id}) {
+    if (tables.isEmpty) {
+      throw NotFoundTableException();
+    }
+    return TableClosed._(tables: tables, id: id);
+  }
+}
+
+sealed class TableInUse extends TableUse {
+  TableInUse._({required super.tables, required super.id}) : super._();
+
+  factory TableInUse.from({
+    required List<Table> tables,
+    required String id,
+    required int number,
+    required DateTime started,
+    required String tableChargePerPerson,
+    required int serviceChargeRate,
+    required String totalPrice,
+  }) {
+    if (tables.length <= 1) {
+      return SingleTableUse._from(
+        tables: tables,
+        id: id,
+        number: number,
+        started: started,
+        tableChargePerPerson: tableChargePerPerson,
+        serviceChargeRate: serviceChargeRate,
+        totalPrice: totalPrice,
+      );
+    } else {
+      return MergedTableUse._from(
+        tables: tables,
+        id: id,
+        number: number,
+        started: started,
+        tableChargePerPerson: tableChargePerPerson,
+        serviceChargeRate: serviceChargeRate,
+        totalPrice: totalPrice,
+      );
+    }
+  }
+
+  abstract final int number;
+  abstract final DateTime started;
+  abstract final String tableChargePerPerson;
+  abstract final int serviceChargeRate;
+  abstract final String totalPrice;
+}
+
+class SingleTableUse extends TableInUse {
+  SingleTableUse._({
+    required super.tables,
+    required super.id,
     required this.number,
-    required this.status,
     required this.started,
-    required this.customerGroups,
-    required this.quantity,
     required this.tableChargePerPerson,
     required this.serviceChargeRate,
     required this.totalPrice,
-    required this.uuid,
-    this.ended,
-    this.tempTransactionHeadId,
-    this.reservationId,
-    this.orders,
-  });
+  }) : super._();
 
-  final String id;
-  final String storeId;
-  final List<Table> tables;
+  factory SingleTableUse._from({
+    required List<Table> tables,
+    required String id,
+    required int number,
+    required DateTime started,
+    required String tableChargePerPerson,
+    required int serviceChargeRate,
+    required String totalPrice,
+  }) {
+    if (tables.isEmpty) {
+      throw NotFoundTableException();
+    }
+    if (tables.length > 1) {
+      throw NotSingleTableException();
+    }
+    return SingleTableUse._(
+      tables: tables,
+      id: id,
+      number: number,
+      started: started,
+      tableChargePerPerson: tableChargePerPerson,
+      serviceChargeRate: serviceChargeRate,
+      totalPrice: totalPrice,
+    );
+  }
+
+  @override
   final int number;
-  final String status;
-  final DateTime started;
-  final DateTime? ended;
-  final List<CustomerGroup> customerGroups;
-  final int quantity;
-  final String tableChargePerPerson;
+  @override
   final int serviceChargeRate;
+  @override
+  final DateTime started;
+  @override
+  final String tableChargePerPerson;
+  @override
   final String totalPrice;
-  final String? tempTransactionHeadId;
-  final String? reservationId;
-  final String uuid;
-  final List<TableUseOrder>? orders;
 }
 
-class TableUseOrder {
-  const TableUseOrder({
-    required this.orderId,
-    required this.ordered,
-    required this.items,
-    required this.tableUseId,
-  });
+class MergedTableUse extends TableInUse {
+  MergedTableUse._({
+    required super.tables,
+    required super.id,
+    required this.number,
+    required this.started,
+    required this.tableChargePerPerson,
+    required this.serviceChargeRate,
+    required this.totalPrice,
+  }) : super._();
 
-  final String orderId;
-  final DateTime ordered;
-  final List<TableUseOrderItem> items;
-  final String tableUseId;
+  factory MergedTableUse._from({
+    required List<Table> tables,
+    required String id,
+    required int number,
+    required DateTime started,
+    required String tableChargePerPerson,
+    required int serviceChargeRate,
+    required String totalPrice,
+  }) {
+    if (tables.isEmpty) {
+      throw NotFoundTableException();
+    }
+    if (tables.length <= 1) {
+      throw NotMultipleTablesException();
+    }
+
+    final seenTableIds = <String>{};
+    for (final table in tables) {
+      if (!seenTableIds.add(table.id)) {
+        throw DuplicateTableException(tableId: table.id);
+      }
+    }
+    
+    return MergedTableUse._(
+      tables: tables,
+      id: id,
+      number: number,
+      started: started,
+      tableChargePerPerson: tableChargePerPerson,
+      serviceChargeRate: serviceChargeRate,
+      totalPrice: totalPrice,
+    );
+  }
+
+  @override
+  final int number;
+  @override
+  final int serviceChargeRate;
+  @override
+  final DateTime started;
+  @override
+  final String tableChargePerPerson;
+  @override
+  final String totalPrice;
+
+  Table get representativeTable => tables.first;
 }
 
-class TableUseOrderItem {
-  const TableUseOrderItem({
-    required this.id,
-    required this.name,
-    required this.status,
-    required this.menuId,
-    required this.quantity,
-    required this.menuType,
-    this.servedAt,
-    this.memo,
-  });
-
-  final String id;
-  final String name;
-  final String status;
-  final DateTime? servedAt;
-  final String? memo;
-  final String menuId;
-  final int quantity;
-  final String menuType;
+enum TableUseStatus {
+  using,
+  closed,
 }
 
-class Table {
-  const Table({
-    required this.id,
-    required this.name,
-  });
+class TableUseList {
+  TableUseList({required this.values});
+  final List<TableUse> values;
 
-  final String id;
-  final String name;
-}
+  Iterable<TableInUse> get inUse {
+    final tableInUseList = values.whereType<TableInUse>();
 
-class CustomerGroup {
-  const CustomerGroup({
-    required this.id,
-    required this.name,
-  });
+    final seenTableIds = <String>{};
+    for (final table in tableInUseList.expand((use) => use.tables)) {
+      if (!seenTableIds.add(table.id)) {
+        throw DuplicateTableException(tableId: table.id);
+      }
+    }
 
-  final String id;
-  final String name;
+    return tableInUseList;
+  }
 }

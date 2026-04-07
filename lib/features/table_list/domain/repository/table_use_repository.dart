@@ -1,7 +1,7 @@
 import '../table_use.dart';
 
 abstract class TableUseRepository {
-  Future<List<TableUse>> getTableUses({
+  Future<TableUseList> getTableUses({
     String? storeId,
     String? status,
     int? page,

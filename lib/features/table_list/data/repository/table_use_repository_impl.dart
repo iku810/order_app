@@ -1,6 +1,7 @@
 import '../../../../infrastructure/network/api_client.dart';
 import '../../../../shared/auth/domain/entity/contract_id.dart';
 import '../../domain/repository/table_use_repository.dart';
+import '../../domain/table.dart';
 import '../../domain/table_use.dart';
 import '../dto/request/cancel_order_request.dart';
 import '../dto/request/check_in_request.dart';
@@ -14,7 +15,7 @@ class TableUseRepositoryImpl implements TableUseRepository {
   final ContractId _contractId;
 
   @override
-  Future<List<TableUse>> getTableUses({
+  Future<TableUseList> getTableUses({
     String? storeId,
     String? status,
     int? page,
@@ -25,7 +26,7 @@ class TableUseRepositoryImpl implements TableUseRepository {
       status: status,
       page: page,
     );
-    return responses.map(_toTableUseDomain).toList();
+    return TableUseList(values: responses.map(_toTableUseDomain).toList());
   }
 
   @override
@@ -56,7 +57,8 @@ class TableUseRepositoryImpl implements TableUseRepository {
       tableChargePerPerson: tableChargePerPerson,
       serviceChargeRate: serviceChargeRate,
     );
-    final response = await _apiClient.checkIn(contractId: _contractId.value, body: body);
+    final response =
+        await _apiClient.checkIn(contractId: _contractId.value, body: body);
     return _toTableUseDomain(response);
   }
 
@@ -68,8 +70,7 @@ class TableUseRepositoryImpl implements TableUseRepository {
     await _apiClient.checkout(
       contractId: _contractId.value,
       tableUseId: tableUseId,
-      body: CheckoutRequest(
-          makeTempTransaction: makeTempTransaction),
+      body: CheckoutRequest(makeTempTransaction: makeTempTransaction),
     );
   }
 
@@ -93,53 +94,26 @@ class TableUseRepositoryImpl implements TableUseRepository {
         orderSlip: orderSlip,
       ),
     );
-    await _apiClient.cancelOrder(contractId: _contractId.value,tableUseId: tableUseId, body: body);
+    await _apiClient.cancelOrder(
+        contractId: _contractId.value, tableUseId: tableUseId, body: body);
   }
 
-  TableUse _toTableUseDomain(TableUseResponse dto) => TableUse(
-        id: dto.id,
-        storeId: dto.storeId,
-        tables: dto.tables
-            .map((t) => Table(id: t.id, name: t.name))
-            .toList(),
-        number: dto.number,
-        status: dto.status,
-        started: DateTime.parse(dto.started),
-        ended: dto.ended != null ? DateTime.parse(dto.ended!) : null,
-        customerGroups: dto.customerGroups
-            .map((cg) => CustomerGroup(id: cg.id, name: cg.name))
-            .toList(),
-        quantity: dto.quantity,
-        tableChargePerPerson: dto.tableChargePerPerson,
-        serviceChargeRate: dto.serviceChargeRate,
-        totalPrice: dto.totalPrice,
-        tempTransactionHeadId: dto.tempTransactionHeadId,
-        reservationId: dto.reservationId,
-        uuid: dto.uuid,
-        orders: dto.orders
-            ?.map(
-              (o) => TableUseOrder(
-                orderId: o.orderId,
-                ordered: DateTime.parse(o.ordered),
-                items: o.items
-                    .map(
-                      (i) => TableUseOrderItem(
-                        id: i.id,
-                        name: i.name,
-                        status: i.status,
-                        servedAt: i.servedAt != null
-                            ? DateTime.parse(i.servedAt!)
-                            : null,
-                        memo: i.memo,
-                        menuId: i.menuId,
-                        quantity: i.quantity,
-                        menuType: i.menuType,
-                      ),
-                    )
-                    .toList(),
-                tableUseId: o.tableUseId,
-              ),
-            )
-            .toList(),
-      );
+  TableUseStatus _toTableUseStatus(String status) => switch (status) {
+        'started' || 'merged' => TableUseStatus.using,
+        'ended' || 'canceled' => TableUseStatus.closed,
+        _ => TableUseStatus.closed,
+      };
+
+  TableUse _toTableUseDomain(TableUseResponse dto) {
+    return TableUse.from(
+      id: dto.id,
+      tables: dto.tables.map((t) => Table(id: t.id, name: t.name)).toList(),
+      status: _toTableUseStatus(dto.status),
+      number: dto.number,
+      started: DateTime.parse(dto.started),
+      tableChargePerPerson: dto.tableChargePerPerson,
+      serviceChargeRate: dto.serviceChargeRate,
+      totalPrice: dto.totalPrice,
+    );
+  }
 }

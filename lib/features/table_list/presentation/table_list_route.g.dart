@@ -11,16 +11,20 @@ List<RouteBase> get $appRoutes => [
     ];
 
 RouteBase get $tableListRoute => GoRouteData.$route(
-      path: '/table_list',
+      path: '/table_list/:storeId',
       factory: $TableListRoute._fromState,
     );
 
 mixin $TableListRoute on GoRouteData {
-  static TableListRoute _fromState(GoRouterState state) => TableListRoute();
+  static TableListRoute _fromState(GoRouterState state) => TableListRoute(
+        storeId: state.pathParameters['storeId']!,
+      );
+
+  TableListRoute get _self => this as TableListRoute;
 
   @override
   String get location => GoRouteData.$location(
-        '/table_list',
+        '/table_list/${Uri.encodeComponent(_self.storeId)}',
       );
 
   @override

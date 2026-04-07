@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../table_list/presentation/table_list_route.dart';
 import 'store_list_notifier.dart';
 
 class StoreListScreen extends ConsumerWidget {
@@ -28,9 +29,7 @@ class StoreListScreen extends ConsumerWidget {
                     return ListTile(
                       title: Text(store.name),
                       trailing: const Icon(Icons.chevron_right),
-                      onTap: () {
-                        // TODO: 店舗詳細画面への遷移
-                      },
+                      onTap: () => TableListRoute(storeId: store.id).go(context),
                     );
                   },
                 ),

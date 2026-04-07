@@ -4,6 +4,7 @@ import '../../../domain/store.dart';
 
 part 'store_response.g.dart';
 
+
 @JsonSerializable()
 class StoreResponse {
   const StoreResponse({
@@ -34,12 +35,6 @@ class StoreResponse {
 
 extension StoreResponseMapper on StoreResponse {
   Store toStore() => Store(id: id, name: name);
-
-  StoreDetail toStoreDetail() => StoreDetail(
-        id: id,
-        name: name,
-        tables: tables?.map((t) => t.toTable()).toList(),
-      );
 }
 
 @JsonSerializable()
@@ -60,8 +55,4 @@ class StoreTableResponse {
   final int? sortNo;
 
   Map<String, dynamic> toJson() => _$StoreTableResponseToJson(this);
-}
-
-extension StoreTableResponseMapper on StoreTableResponse {
-  Table toTable() => Table(id: id, name: name, category: category, sortNo: sortNo);
 }
