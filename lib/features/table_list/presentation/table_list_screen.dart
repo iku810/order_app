@@ -2,6 +2,7 @@ import 'package:flutter/material.dart' hide Table;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../check_in/presentation/check_in_route.dart';
+import '../../order_history/presentation/order_history_route.dart';
 import '../domain/table_state.dart';
 import 'table_state_list_notifier.dart';
 
@@ -71,9 +72,11 @@ class _TableListTile extends StatelessWidget {
         switch (table) {
           case UncheckedInTable():
             CheckInRoute(storeId: storeId, tableId: table.id).go(context);
-          case CheckedInTable():
-            // TODO: 注文履歴画面への遷移
-            break;
+          case final CheckedInTable t:
+            OrderHistoryRoute(
+              storeId: storeId,
+              tableUseId: t.tableUse.id,
+            ).go(context);
         }
       },
     );
