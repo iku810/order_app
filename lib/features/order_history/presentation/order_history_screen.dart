@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../order/presentation/order_route.dart';
+import '../../payment/presentation/payment_route.dart';
 import 'order_history_notifier.dart';
 
 class OrderHistoryScreen extends ConsumerWidget {
@@ -64,7 +65,8 @@ class OrderHistoryScreen extends ConsumerWidget {
               Expanded(
                 child: ElevatedButton(
                   onPressed: () {
-                    // TODO: 会計画面への遷移
+                    PaymentRoute(storeId: storeId, tableUseId: tableUseId)
+                        .go(context);
                   },
                   child: const Text('会計'),
                 ),

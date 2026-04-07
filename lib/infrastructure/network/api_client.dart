@@ -8,7 +8,8 @@ import '../../features/store/data/dto/response/store_response.dart';
 import '../../shared/table/data/dto/request/cancel_order_request.dart';
 import '../../shared/table/data/dto/request/check_in_request.dart';
 import '../../shared/table/data/dto/request/checkout_request.dart';
-import '../../shared/table/data/dto/response/table_use_response.dart';
+import '../../shared/table/data/dto/response/table_use_detail_response.dart';
+import '../../shared/table/data/dto/response/table_use_list_item_response.dart';
 
 part 'api_client.g.dart';
 
@@ -42,7 +43,7 @@ abstract class ApiClient {
 
   // テーブル利用履歴一覧取得
   @GET('{contractId}/waiter/table_uses')
-  Future<List<TableUseResponse>> getTableUses({
+  Future<List<TableUseListItemResponse>> getTableUses({
     @Path('contractId') required String contractId,
     @Query('store_id') String? storeId,
     @Query('status') String? status,
@@ -51,14 +52,14 @@ abstract class ApiClient {
 
   // テーブル利用履歴取得
   @GET('{contractId}/waiter/table_uses/{tableUseId}')
-  Future<TableUseResponse> getTableUse({
+  Future<TableUseDetailResponse> getTableUse({
     @Path('contractId') required String contractId,
     @Path('tableUseId') required String tableUseId,
   });
 
   // チェックイン
   @POST('{contractId}/waiter/table_uses')
-  Future<TableUseResponse> checkIn({
+  Future<TableUseListItemResponse> checkIn({
     @Path('contractId') required String contractId,
     @Body() required CheckInRequest body,
   });

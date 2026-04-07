@@ -1,7 +1,7 @@
 import '../../../../infrastructure/network/api_client.dart';
 import '../../../../shared/auth/domain/contract_id.dart';
 import '../../../../shared/table/data/dto/request/cancel_order_request.dart';
-import '../../../../shared/table/data/dto/response/table_use_response.dart';
+import '../../../../shared/table/data/dto/response/table_use_detail_response.dart';
 import '../../domain/order_history.dart';
 import '../../domain/repository/order_history_repository.dart';
 
@@ -17,7 +17,7 @@ class OrderHistoryRepositoryImpl implements OrderHistoryRepository {
       contractId: _contractId.value,
       tableUseId: tableUseId,
     );
-    return response.orders?.map(_toOrderHistory).toList() ?? [];
+    return response.orders.map(_toOrderHistory).toList();
   }
 
   @override

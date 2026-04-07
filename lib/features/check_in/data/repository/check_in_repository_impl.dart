@@ -1,7 +1,7 @@
 import '../../../../infrastructure/network/api_client.dart';
 import '../../../../shared/auth/domain/contract_id.dart';
 import '../../../../shared/table/data/dto/request/check_in_request.dart';
-import '../../../../shared/table/data/dto/response/table_use_response.dart';
+import '../../../../shared/table/data/dto/response/table_use_list_item_response.dart';
 import '../../../../shared/table/domain/table_use.dart';
 import '../../domain/repository/check_in_repository.dart';
 

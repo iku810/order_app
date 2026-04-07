@@ -122,7 +122,7 @@ class _ApiClient implements ApiClient {
   }
 
   @override
-  Future<List<TableUseResponse>> getTableUses({
+  Future<List<TableUseListItemResponse>> getTableUses({
     required String contractId,
     String? storeId,
     String? status,
@@ -137,7 +137,7 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<List<TableUseResponse>>(
+    final _options = _setStreamType<List<TableUseListItemResponse>>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -148,11 +148,12 @@ class _ApiClient implements ApiClient {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<List<dynamic>>(_options);
-    late List<TableUseResponse> _value;
+    late List<TableUseListItemResponse> _value;
     try {
       _value = _result.data!
           .map(
-            (dynamic i) => TableUseResponse.fromJson(i as Map<String, dynamic>),
+            (dynamic i) =>
+                TableUseListItemResponse.fromJson(i as Map<String, dynamic>),
           )
           .toList();
     } on Object catch (e, s) {
@@ -163,7 +164,7 @@ class _ApiClient implements ApiClient {
   }
 
   @override
-  Future<TableUseResponse> getTableUse({
+  Future<TableUseDetailResponse> getTableUse({
     required String contractId,
     required String tableUseId,
   }) async {
@@ -171,7 +172,7 @@ class _ApiClient implements ApiClient {
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<TableUseResponse>(
+    final _options = _setStreamType<TableUseDetailResponse>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -182,9 +183,9 @@ class _ApiClient implements ApiClient {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late TableUseResponse _value;
+    late TableUseDetailResponse _value;
     try {
-      _value = TableUseResponse.fromJson(_result.data!);
+      _value = TableUseDetailResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
@@ -193,7 +194,7 @@ class _ApiClient implements ApiClient {
   }
 
   @override
-  Future<TableUseResponse> checkIn({
+  Future<TableUseListItemResponse> checkIn({
     required String contractId,
     required CheckInRequest body,
   }) async {
@@ -202,7 +203,7 @@ class _ApiClient implements ApiClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    final _options = _setStreamType<TableUseResponse>(
+    final _options = _setStreamType<TableUseListItemResponse>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -213,9 +214,9 @@ class _ApiClient implements ApiClient {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late TableUseResponse _value;
+    late TableUseListItemResponse _value;
     try {
-      _value = TableUseResponse.fromJson(_result.data!);
+      _value = TableUseListItemResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;

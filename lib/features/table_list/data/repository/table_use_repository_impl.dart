@@ -3,7 +3,8 @@ import '../../../../shared/auth/domain/contract_id.dart';
 import '../../../../shared/table/data/dto/request/cancel_order_request.dart';
 import '../../../../shared/table/data/dto/request/check_in_request.dart';
 import '../../../../shared/table/data/dto/request/checkout_request.dart';
-import '../../../../shared/table/data/dto/response/table_use_response.dart';
+import '../../../../shared/table/data/dto/response/table_use_detail_response.dart';
+import '../../../../shared/table/data/dto/response/table_use_list_item_response.dart';
 import '../../../../shared/table/domain/repository/table_use_repository.dart';
 import '../../../../shared/table/domain/table_use.dart';
 
