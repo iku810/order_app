@@ -7,6 +7,20 @@
     "source.fixAll": "always",
     "source.organizeImports": "always"
   },
-  "cSpell.words": ["cupertino", "pubspec", "Schyler", "subosito", "unawaited"],
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.expand": false,
+  "explorer.fileNesting.patterns": {
+    "*.dart": "$(capture).freezed.dart, $(capture).g.dart"
+  },
+  "cSpell.words": [
+    "cupertino",
+    "pubspec",
+    "riverpod",
+    "Schyler",
+    "subosito",
+    "unawaited",
+    "usecase",
+    "userinfo"
+  ],
   "geminicodeassist.rules": "Follow docs/ai/rules.md for project rules"
 }
