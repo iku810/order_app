@@ -48,4 +48,4 @@ final class CheckInUsecaseProvider
   }
 }
 
-String _$checkInUsecaseHash() => r'7a97569af462d47425c93f66c59f8a0edd97633f';
+String _$checkInUsecaseHash() => r'1cdc3f4fc0af7b2816d254fb95a3570f82defb4f';

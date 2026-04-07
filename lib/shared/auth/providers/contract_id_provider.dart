@@ -1,6 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../domain/entity/contract_id.dart';
+import '../domain/contract_id.dart';
 
 part 'contract_id_provider.g.dart';
 

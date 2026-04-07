@@ -1,6 +1,6 @@
-import '../../../../shared/auth/domain/entity/auth_exception.dart';
-import '../../../../shared/auth/domain/entity/auth_state.dart';
-import '../../../../shared/auth/domain/repository/auth_repository.dart';
+import '../../../shared/auth/domain/auth_exception.dart';
+import '../../../shared/auth/domain/auth_state.dart';
+import '../../../shared/auth/domain/repository/auth_repository.dart';
 
 class AuthUsecase {
   AuthUsecase(this.repository);

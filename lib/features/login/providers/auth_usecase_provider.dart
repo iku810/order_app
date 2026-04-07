@@ -1,7 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../shared/auth/providers/auth_repository_provider.dart';
-import '../application/usecase/auth_usecase.dart';
+import '../application/auth_usecase.dart';
 
 part 'auth_usecase_provider.g.dart';
 

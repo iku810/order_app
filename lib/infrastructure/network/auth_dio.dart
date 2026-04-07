@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 
-import '../../shared/auth/domain/entity/credentials.dart';
+import '../../shared/auth/domain/credentials.dart';
 
 class AuthDio {
   AuthDio(Credentials credentials) : dio = Dio() {

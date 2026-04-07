@@ -1,5 +1,5 @@
-import '../../shared/auth/domain/entity/token.dart';
 import '../../shared/auth/domain/repository/auth_repository.dart';
+import '../../shared/auth/domain/token.dart';
 
 class MockAuthRepository implements AuthRepository {
   Token? _token;

@@ -13,7 +13,7 @@ part of 'check_in_notifier.dart';
 final checkInProvider = CheckInNotifierFamily._();
 
 final class CheckInNotifierProvider
-    extends $NotifierProvider<CheckInNotifier, AsyncValue<bool>> {
+    extends $NotifierProvider<CheckInNotifier, CheckInState> {
   CheckInNotifierProvider._(
       {required CheckInNotifierFamily super.from,
       required (
@@ -44,10 +44,10 @@ final class CheckInNotifierProvider
   CheckInNotifier create() => CheckInNotifier();
 
   /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(AsyncValue<bool> value) {
+  Override overrideWithValue(CheckInState value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $SyncValueProvider<AsyncValue<bool>>(value),
+      providerOverride: $SyncValueProvider<CheckInState>(value),
     );
   }
 
@@ -62,15 +62,15 @@ final class CheckInNotifierProvider
   }
 }
 
-String _$checkInNotifierHash() => r'b95ce87d914c4fe80d55691f4e5e36afd76430d0';
+String _$checkInNotifierHash() => r'525e50f3a6b80cbe52d619c818866e779040d2dc';
 
 final class CheckInNotifierFamily extends $Family
     with
         $ClassFamilyOverride<
             CheckInNotifier,
-            AsyncValue<bool>,
-            AsyncValue<bool>,
-            AsyncValue<bool>,
+            CheckInState,
+            CheckInState,
+            CheckInState,
             (
               String,
               String,
@@ -97,7 +97,7 @@ final class CheckInNotifierFamily extends $Family
   String toString() => r'checkInProvider';
 }
 
-abstract class _$CheckInNotifier extends $Notifier<AsyncValue<bool>> {
+abstract class _$CheckInNotifier extends $Notifier<CheckInState> {
   late final _$args = ref.$arg as (
     String,
     String,
@@ -105,17 +105,17 @@ abstract class _$CheckInNotifier extends $Notifier<AsyncValue<bool>> {
   String get storeId => _$args.$1;
   String get tableId => _$args.$2;
 
-  AsyncValue<bool> build(
+  CheckInState build(
     String storeId,
     String tableId,
   );
   @$mustCallSuper
   @override
   void runBuild() {
-    final ref = this.ref as $Ref<AsyncValue<bool>, AsyncValue<bool>>;
+    final ref = this.ref as $Ref<CheckInState, CheckInState>;
     final element = ref.element as $ClassProviderElement<
-        AnyNotifier<AsyncValue<bool>, AsyncValue<bool>>,
-        AsyncValue<bool>,
+        AnyNotifier<CheckInState, CheckInState>,
+        CheckInState,
         Object?,
         Object?>;
     element.handleCreate(

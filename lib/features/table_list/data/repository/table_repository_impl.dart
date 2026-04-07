@@ -1,7 +1,7 @@
 import '../../../../infrastructure/network/api_client.dart';
-import '../../../../shared/auth/domain/entity/contract_id.dart';
-import '../../domain/repository/table_repository.dart';
-import '../../domain/table.dart';
+import '../../../../shared/auth/domain/contract_id.dart';
+import '../../../../shared/table/domain/repository/table_repository.dart';
+import '../../../../shared/table/domain/table.dart';
 
 class TableRepositoryImpl implements TableRepository {
   TableRepositoryImpl(this._apiClient, this._contractId);

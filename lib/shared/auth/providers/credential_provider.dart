@@ -1,6 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../domain/entity/credentials.dart';
+import '../domain/credentials.dart';
 
 part 'credential_provider.g.dart';
 

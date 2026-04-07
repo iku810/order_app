@@ -1,10 +1,10 @@
 import '../../../../infrastructure/network/auth_api_client.dart';
 import '../../../../infrastructure/storage/secure_storage.dart';
 import '../../../../infrastructure/storage/shared_preferences.dart';
-import '../../domain/entity/auth_exception.dart';
-import '../../domain/entity/contract_id.dart';
-import '../../domain/entity/token.dart';
+import '../../domain/auth_exception.dart';
+import '../../domain/contract_id.dart';
 import '../../domain/repository/auth_repository.dart';
+import '../../domain/token.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   AuthRepositoryImpl(

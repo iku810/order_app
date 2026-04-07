@@ -1,22 +1,19 @@
-import 'table.dart';
-import 'table_exceptions.dart';
-import 'table_use.dart';
+import 'dart:collection';
+
+import '../../../shared/table/domain/table.dart';
+import '../../../shared/table/domain/table_use.dart';
 
 sealed class TableState implements Comparable<TableState> {
   TableState._(this._table);
 
-  factory TableState.from(Table table, TableUse? tableUse) {
+  factory TableState.from(Table table, TableInUse? tableUse) {
     if (tableUse == null) {
       return UncheckedInTable._(table);
     }
-    switch (tableUse) {
-      case SingleTableUse():
-        return SingleTable._(table, tableUse);
-      case MergedTableUse():
-        return MergedTable._(table, tableUse);
-      case TableClosed():
-        throw AlreadyClosedTableUseException();
-    }
+    return switch (tableUse) {
+      SingleTableUse() => SingleTable._(table, tableUse),
+      MergedTableUse() => MergedTable._(table, tableUse),
+    };
   }
   final Table _table;
   String get name => _table.name;
@@ -51,7 +48,8 @@ class MergedTable extends CheckedInTable<MergedTableUse> {
 }
 
 class TableStateList {
-  TableStateList(this._values);
+  TableStateList(List<TableState> values)
+      : _values = List<TableState>.from(values)..sort();
   final List<TableState> _values;
-  List<TableState> get values => List<TableState>.from(_values)..sort();
+  UnmodifiableListView<TableState> get values => UnmodifiableListView(_values);
 }

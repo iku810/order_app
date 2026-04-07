@@ -1,5 +1,5 @@
-import '../domain/repository/table_repository.dart';
-import '../domain/repository/table_use_repository.dart';
+import '../../../shared/table/domain/repository/table_repository.dart';
+import '../../../shared/table/domain/repository/table_use_repository.dart';
 import '../domain/table_state.dart';
 
 class FetchTableStateListUsecase {

@@ -1,5 +1,8 @@
 import 'package:json_annotation/json_annotation.dart';
 
+import '../../../domain/table.dart';
+import '../../../domain/table_use.dart';
+
 part 'table_use_response.g.dart';
 
 @JsonSerializable()
@@ -118,4 +121,24 @@ class OrderItemInTableUseResponse {
   final String menuType;
 
   Map<String, dynamic> toJson() => _$OrderItemInTableUseResponseToJson(this);
+}
+
+extension TableUseResponseMapper on TableUseResponse {
+  TableUse toDomain() {
+    return TableUse.from(
+      id: id,
+      tables: tables.map((t) => Table(id: t.id, name: t.name)).toList(),
+      status: _toTableUseStatus(status),
+      number: number,
+      started: DateTime.parse(started),
+      tableChargePerPerson: tableChargePerPerson,
+      serviceChargeRate: serviceChargeRate,
+      totalPrice: totalPrice,
+    );
+  }
+
+  TableUseStatus _toTableUseStatus(String status) => switch (status) {
+        'started' || 'merged' => TableUseStatus.using,
+        _ => TableUseStatus.closed,
+      };
 }

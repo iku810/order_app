@@ -1,6 +1,6 @@
-import '../../features/table_list/domain/repository/table_use_repository.dart';
-import '../../features/table_list/domain/table.dart';
-import '../../features/table_list/domain/table_use.dart';
+import '../../shared/table/domain/repository/table_use_repository.dart';
+import '../../shared/table/domain/table.dart';
+import '../../shared/table/domain/table_use.dart';
 
 class MockTableUseRepository implements TableUseRepository {
   final List<TableUse> _tableUses = [

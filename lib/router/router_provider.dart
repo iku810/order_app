@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../features/login/presentation/auth_state_notifier.dart';
 import '../features/login/presentation/login_route.dart';
 import '../features/store/presentation/store_list_route.dart';
-import '../shared/auth/domain/entity/auth_state.dart';
+import '../shared/auth/domain/auth_state.dart';
 import 'routes.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {

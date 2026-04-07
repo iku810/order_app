@@ -13,8 +13,8 @@ class TableStateListNotifier extends _$TableStateListNotifier {
   }
 
   Future<void> refresh() async {
-    state = const AsyncLoading();
-    state = await AsyncValue.guard(_fetch);
+    ref.invalidateSelf();
+    await future;
   }
 
   Future<List<TableState>> _fetch() async {

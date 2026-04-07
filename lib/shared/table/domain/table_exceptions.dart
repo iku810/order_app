@@ -14,10 +14,6 @@ class NotMultipleTablesException extends TableUseException {
   NotMultipleTablesException();
 }
 
-class AlreadyClosedTableUseException extends TableUseException {
-  AlreadyClosedTableUseException();
-}
-
 class DuplicateTableException extends TableUseException {
   DuplicateTableException({required this.tableId});
   final String tableId;

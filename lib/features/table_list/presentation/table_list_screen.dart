@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart' hide Table;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../check_in/presentation/check_in_route.dart';
 import '../domain/table_state.dart';
-import 'check_in_route.dart';
 import 'table_state_list_notifier.dart';
 
 class TableListScreen extends ConsumerWidget {
@@ -19,6 +19,7 @@ class TableListScreen extends ConsumerWidget {
         title: const Text('テーブル一覧'),
       ),
       body: tableStateList.when(
+        skipLoadingOnReload: true,
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (e, _) => Center(child: Text('エラーが発生しました: $e')),
         data: (tables) {
@@ -46,7 +47,7 @@ class TableListScreen extends ConsumerWidget {
 }
 
 class _TableListTile extends StatelessWidget {
-  const _TableListTile({required this.storeId, required this.table, super.key});
+  const _TableListTile({required this.storeId, required this.table});
 
   final String storeId;
   final TableState table;

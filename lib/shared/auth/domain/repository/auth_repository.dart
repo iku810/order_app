@@ -1,4 +1,4 @@
-import '../entity/token.dart';
+import '../token.dart';
 
 abstract class AuthRepository {
   Future<Token> fetchToken();

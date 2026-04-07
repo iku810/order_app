@@ -1,7 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../../shared/auth/domain/entity/auth_exception.dart';
-import '../../../shared/auth/domain/entity/auth_state.dart';
+import '../../../shared/auth/domain/auth_exception.dart';
+import '../../../shared/auth/domain/auth_state.dart';
 import '../providers/auth_usecase_provider.dart';
 
 part 'auth_state_notifier.g.dart';

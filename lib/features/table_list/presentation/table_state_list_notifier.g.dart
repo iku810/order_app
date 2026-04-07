@@ -52,7 +52,7 @@ final class TableStateListNotifierProvider
 }
 
 String _$tableStateListNotifierHash() =>
-    r'6cf96c5b857d7d3ac267ffebd16f5064fbb8cf57';
+    r'4000d233a838bb716c5e307a8660d58dc978c921';
 
 final class TableStateListNotifierFamily extends $Family
     with

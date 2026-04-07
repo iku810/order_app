@@ -1,5 +1,5 @@
-import '../../features/table_list/domain/repository/table_repository.dart';
-import '../../features/table_list/domain/table.dart';
+import '../../shared/table/domain/repository/table_repository.dart';
+import '../../shared/table/domain/table.dart';
 
 class MockTableRepository implements TableRepository {
   static const _tables = [

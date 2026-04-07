@@ -1,5 +1,5 @@
 import '../../../../infrastructure/network/api_client.dart';
-import '../../../../shared/auth/domain/entity/contract_id.dart';
+import '../../../../shared/auth/domain/contract_id.dart';
 import '../../domain/menu.dart';
 import '../../domain/repository/menu_repository.dart';
 import '../dto/response/menu_response.dart';

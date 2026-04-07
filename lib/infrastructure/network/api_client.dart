@@ -5,10 +5,10 @@ import '../../features/menu_list/data/dto/response/menu_response.dart';
 import '../../features/order/data/dto/request/order_request.dart';
 import '../../features/order/data/dto/response/order_result_response.dart';
 import '../../features/store/data/dto/response/store_response.dart';
-import '../../features/table_list/data/dto/request/cancel_order_request.dart';
-import '../../features/table_list/data/dto/request/check_in_request.dart';
-import '../../features/table_list/data/dto/request/checkout_request.dart';
-import '../../features/table_list/data/dto/response/table_use_response.dart';
+import '../../shared/table/data/dto/request/cancel_order_request.dart';
+import '../../shared/table/data/dto/request/check_in_request.dart';
+import '../../shared/table/data/dto/request/checkout_request.dart';
+import '../../shared/table/data/dto/response/table_use_response.dart';
 
 part 'api_client.g.dart';
 

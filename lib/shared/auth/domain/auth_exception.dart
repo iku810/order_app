@@ -9,7 +9,7 @@ class FailedToGetTokenException extends AuthException {
 }
 
 class InvalidCredentialsException extends AuthException {
-  
+
   InvalidCredentialsException(super.message);
 }
 

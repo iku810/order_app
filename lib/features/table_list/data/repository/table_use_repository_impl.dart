@@ -1,12 +1,11 @@
 import '../../../../infrastructure/network/api_client.dart';
-import '../../../../shared/auth/domain/entity/contract_id.dart';
-import '../../domain/repository/table_use_repository.dart';
-import '../../domain/table.dart';
-import '../../domain/table_use.dart';
-import '../dto/request/cancel_order_request.dart';
-import '../dto/request/check_in_request.dart';
-import '../dto/request/checkout_request.dart';
-import '../dto/response/table_use_response.dart';
+import '../../../../shared/auth/domain/contract_id.dart';
+import '../../../../shared/table/data/dto/request/cancel_order_request.dart';
+import '../../../../shared/table/data/dto/request/check_in_request.dart';
+import '../../../../shared/table/data/dto/request/checkout_request.dart';
+import '../../../../shared/table/data/dto/response/table_use_response.dart';
+import '../../../../shared/table/domain/repository/table_use_repository.dart';
+import '../../../../shared/table/domain/table_use.dart';
 
 class TableUseRepositoryImpl implements TableUseRepository {
   TableUseRepositoryImpl(this._apiClient, this._contractId);
@@ -26,14 +25,18 @@ class TableUseRepositoryImpl implements TableUseRepository {
       status: status,
       page: page,
     );
-    return TableUseList(values: responses.map(_toTableUseDomain).toList());
+    return TableUseList(
+      values: responses.map((r) => r.toDomain()).toList(),
+    );
   }
 
   @override
   Future<TableUse> getTableUse(String tableUseId) async {
     final response = await _apiClient.getTableUse(
-        contractId: _contractId.value, tableUseId: tableUseId);
-    return _toTableUseDomain(response);
+      contractId: _contractId.value,
+      tableUseId: tableUseId,
+    );
+    return response.toDomain();
   }
 
   @override
@@ -59,7 +62,7 @@ class TableUseRepositoryImpl implements TableUseRepository {
     );
     final response =
         await _apiClient.checkIn(contractId: _contractId.value, body: body);
-    return _toTableUseDomain(response);
+    return response.toDomain();
   }
 
   @override
@@ -77,7 +80,9 @@ class TableUseRepositoryImpl implements TableUseRepository {
   @override
   Future<void> cancelTableUse(String tableUseId) async {
     await _apiClient.cancelTableUse(
-        contractId: _contractId.value, tableUseId: tableUseId);
+      contractId: _contractId.value,
+      tableUseId: tableUseId,
+    );
   }
 
   @override
@@ -95,25 +100,10 @@ class TableUseRepositoryImpl implements TableUseRepository {
       ),
     );
     await _apiClient.cancelOrder(
-        contractId: _contractId.value, tableUseId: tableUseId, body: body);
-  }
-
-  TableUseStatus _toTableUseStatus(String status) => switch (status) {
-        'started' || 'merged' => TableUseStatus.using,
-        'ended' || 'canceled' => TableUseStatus.closed,
-        _ => TableUseStatus.closed,
-      };
-
-  TableUse _toTableUseDomain(TableUseResponse dto) {
-    return TableUse.from(
-      id: dto.id,
-      tables: dto.tables.map((t) => Table(id: t.id, name: t.name)).toList(),
-      status: _toTableUseStatus(dto.status),
-      number: dto.number,
-      started: DateTime.parse(dto.started),
-      tableChargePerPerson: dto.tableChargePerPerson,
-      serviceChargeRate: dto.serviceChargeRate,
-      totalPrice: dto.totalPrice,
+      contractId: _contractId.value,
+      tableUseId: tableUseId,
+      body: body,
     );
   }
+
 }
