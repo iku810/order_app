@@ -9,7 +9,6 @@ class Store {
 }
 
 class StoreList {
-
   factory StoreList.empty() {
     return const StoreList([]);
   }

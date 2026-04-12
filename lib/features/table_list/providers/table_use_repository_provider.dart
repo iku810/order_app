@@ -9,5 +9,6 @@ part 'table_use_repository_provider.g.dart';
 
 @riverpod
 TableUseRepository tableUseRepository(Ref ref) {
-  return TableUseRepositoryImpl(ref.watch(apiClientProvider), ref.watch(contractIdProvider));
+  return TableUseRepositoryImpl(
+      ref.watch(apiClientProvider), ref.watch(contractIdProvider));
 }

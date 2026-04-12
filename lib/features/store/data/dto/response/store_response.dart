@@ -4,7 +4,6 @@ import '../../../domain/store.dart';
 
 part 'store_response.g.dart';
 
-
 @JsonSerializable()
 class StoreResponse {
   const StoreResponse({

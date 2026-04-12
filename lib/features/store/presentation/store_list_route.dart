@@ -9,7 +9,7 @@ part 'store_list_route.g.dart';
   path: '/store_list',
 )
 class StoreListRoute extends GoRouteData with $StoreListRoute {
-    @override
+  @override
   Widget build(BuildContext context, GoRouterState state) {
     return const StoreListScreen();
   }

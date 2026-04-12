@@ -46,9 +46,7 @@ class MockOrderHistoryRepository implements OrderHistoryRepository {
   @override
   Future<List<OrderHistory>> getOrderHistories(String tableUseId) async {
     await Future<void>.delayed(const Duration(milliseconds: 300));
-    return _histories
-        .where((h) => h.tableUseId == tableUseId)
-        .toList();
+    return _histories.where((h) => h.tableUseId == tableUseId).toList();
   }
 
   @override

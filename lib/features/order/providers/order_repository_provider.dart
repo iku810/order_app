@@ -9,5 +9,6 @@ part 'order_repository_provider.g.dart';
 
 @riverpod
 OrderRepository orderRepository(Ref ref) {
-  return OrderRepositoryImpl(ref.watch(apiClientProvider), ref.watch(contractIdProvider));
+  return OrderRepositoryImpl(
+      ref.watch(apiClientProvider), ref.watch(contractIdProvider));
 }

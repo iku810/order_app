@@ -167,7 +167,7 @@ class MergedTableUse extends TableInUse {
         throw DuplicateTableException(tableId: table.id);
       }
     }
-    
+
     return MergedTableUse._(
       tables: tables,
       id: id,

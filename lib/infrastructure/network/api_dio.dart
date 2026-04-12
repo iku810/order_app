@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 
-
 class ApiDio {
   ApiDio(String auth) : dio = Dio() {
     dio.options.headers['Authorization'] = 'Basic $auth';

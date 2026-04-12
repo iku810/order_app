@@ -11,7 +11,6 @@ class MenuRepositoryImpl implements MenuRepository {
 
   final ContractId _contractId;
 
-
   @override
   Future<List<Menu>> getStoreMenus(String storeId, {int? page}) async {
     final responses = await _apiClient.getStoreMenus(
@@ -52,35 +51,35 @@ class MenuRepositoryImpl implements MenuRepository {
             .toList(),
       );
 
-      TaxType _toTaxType(String taxType) {
-        switch (taxType) {
-          case 'normal':
-            return TaxType.normal;
-          case 'reduced':
-            return TaxType.reduced;
-          default:
-            throw Exception('Unknown tax type: $taxType');
-        }
-      }
+  TaxType _toTaxType(String taxType) {
+    switch (taxType) {
+      case 'normal':
+        return TaxType.normal;
+      case 'reduced':
+        return TaxType.reduced;
+      default:
+        throw Exception('Unknown tax type: $taxType');
+    }
+  }
 
-      Tax _toTax(String tax) {
-        switch (tax) {
-          case 'include':
-            return Tax.include;
-          case 'exclude':
-            return Tax.exclude;
-          case 'none':
-            return Tax.none;
-          default:
-            throw Exception('Unknown tax: $tax');
-        }
-      }
+  Tax _toTax(String tax) {
+    switch (tax) {
+      case 'include':
+        return Tax.include;
+      case 'exclude':
+        return Tax.exclude;
+      case 'none':
+        return Tax.none;
+      default:
+        throw Exception('Unknown tax: $tax');
+    }
+  }
 
-      int _toInt(String amount) {
-        try {
-          return int.parse(amount);
-        } catch (e) {
-          throw Exception('Invalid amount: $amount');
-        }
-      }
+  int _toInt(String amount) {
+    try {
+      return int.parse(amount);
+    } catch (e) {
+      throw Exception('Invalid amount: $amount');
+    }
+  }
 }

@@ -21,7 +21,8 @@ import 'repositories/mock_table_use_repository.dart';
 final mockProviderOverrides = [
   authRepositoryProvider.overrideWithValue(MockAuthRepository()),
   checkInRepositoryProvider.overrideWithValue(MockCheckInRepository()),
-  orderHistoryRepositoryProvider.overrideWithValue(MockOrderHistoryRepository()),
+  orderHistoryRepositoryProvider
+      .overrideWithValue(MockOrderHistoryRepository()),
   paymentRepositoryProvider.overrideWithValue(MockPaymentRepository()),
   storeRepositoryProvider.overrideWithValue(MockStoreRepository()),
   menuRepositoryProvider.overrideWithValue(MockMenuRepository()),

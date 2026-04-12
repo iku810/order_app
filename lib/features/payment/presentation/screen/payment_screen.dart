@@ -46,7 +46,8 @@ class PaymentScreen extends ConsumerWidget {
     );
 
     final summaryAsync = ref.watch(paymentSummaryProvider(tableUseId));
-    final isProcessing = ref.watch(checkoutProvider(tableUseId)) is AsyncLoading;
+    final isProcessing =
+        ref.watch(checkoutProvider(tableUseId)) is AsyncLoading;
 
     return Scaffold(
       appBar: AppBar(title: const Text('会計')),
@@ -112,8 +113,11 @@ class _PaymentBody extends StatelessWidget {
     final includedTax10 = (includedTax10Base * 10 / 110).round();
     final includedTax8 = (includedTax8Base * 8 / 108).round();
 
-    final total =
-        menuSubtotal + tableCharge + serviceCharge + excludedTax10 + excludedTax8;
+    final total = menuSubtotal +
+        tableCharge +
+        serviceCharge +
+        excludedTax10 +
+        excludedTax8;
 
     return Column(
       children: [
@@ -146,7 +150,8 @@ class _PaymentBody extends StatelessWidget {
               _SummaryRow(label: '商品小計', amount: menuSubtotal),
               if (tableCharge > 0)
                 _SummaryRow(
-                  label: 'テーブルチャージ (${summary.number}名 × ¥${summary.tableChargePerPerson})',
+                  label:
+                      'テーブルチャージ (${summary.number}名 × ¥${summary.tableChargePerPerson})',
                   amount: tableCharge,
                 ),
               if (serviceCharge > 0)

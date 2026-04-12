@@ -25,7 +25,8 @@ class CartItem {
   }
 
   @override
-  bool operator ==(Object other) => other is CartItem && other.menu.id == menu.id;
+  bool operator ==(Object other) =>
+      other is CartItem && other.menu.id == menu.id;
 
   @override
   int get hashCode => menu.id.hashCode;
@@ -48,8 +49,7 @@ class CartItem {
 }
 
 class Cart {
-  Cart._({required List<CartItem> items})
-      : _items = items;
+  Cart._({required List<CartItem> items}) : _items = items;
 
   factory Cart({required List<CartItem> items}) {
     if (items.map((item) => item.menu.id).toSet().length != items.length) {
@@ -62,7 +62,8 @@ class Cart {
   UnmodifiableListView<CartItem> get items => UnmodifiableListView(_items);
 
   Cart add(MenuSelection item) {
-    final existingIndex = _items.indexWhere((other) => other.menu.id == item.menu.id);
+    final existingIndex =
+        _items.indexWhere((other) => other.menu.id == item.menu.id);
     if (existingIndex >= 0) {
       final updated = [..._items];
       updated[existingIndex] =

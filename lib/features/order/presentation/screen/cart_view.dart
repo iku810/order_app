@@ -24,8 +24,8 @@ class CartView extends ConsumerWidget {
           if (!context.mounted) return;
           TableListRoute(storeId: storeId).go(context);
           return;
-        } 
-        
+        }
+
         if (next is AsyncError) {
           if (!context.mounted) return;
           showDialog<void>(

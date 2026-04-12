@@ -15,7 +15,12 @@ class MockMenuRepository implements MenuRepository {
       isOpenPrice: false,
       createdIn: 'pos',
       prices: [
-        const Price(taxRate: 10, taxType: TaxType.normal, amount: 500, tax: Tax.include, primary: true),
+        const Price(
+            taxRate: 10,
+            taxType: TaxType.normal,
+            amount: 500,
+            tax: Tax.include,
+            primary: true),
       ],
     ),
     Menu.create(
@@ -30,7 +35,12 @@ class MockMenuRepository implements MenuRepository {
       isOpenPrice: false,
       createdIn: 'pos',
       prices: [
-        const Price(taxRate: 10, taxType: TaxType.normal, amount: 300, tax: Tax.include, primary: true),
+        const Price(
+            taxRate: 10,
+            taxType: TaxType.normal,
+            amount: 300,
+            tax: Tax.include,
+            primary: true),
       ],
     ),
     Menu.create(
@@ -45,7 +55,12 @@ class MockMenuRepository implements MenuRepository {
       isOpenPrice: false,
       createdIn: 'pos',
       prices: [
-        const Price(taxRate: 10, taxType: TaxType.normal, amount: 400, tax: Tax.include, primary: true),
+        const Price(
+            taxRate: 10,
+            taxType: TaxType.normal,
+            amount: 400,
+            tax: Tax.include,
+            primary: true),
       ],
     ),
     Menu.create(
@@ -60,7 +75,12 @@ class MockMenuRepository implements MenuRepository {
       isOpenPrice: false,
       createdIn: 'pos',
       prices: [
-        const Price(taxRate: 10, taxType: TaxType.normal, amount: 600, tax: Tax.include, primary: true),
+        const Price(
+            taxRate: 10,
+            taxType: TaxType.normal,
+            amount: 600,
+            tax: Tax.include,
+            primary: true),
       ],
     ),
     Menu.create(
@@ -75,7 +95,12 @@ class MockMenuRepository implements MenuRepository {
       isOpenPrice: false,
       createdIn: 'pos',
       prices: [
-        const Price(taxRate: 10, taxType: TaxType.normal, amount: 500, tax: Tax.include, primary: true),
+        const Price(
+            taxRate: 10,
+            taxType: TaxType.normal,
+            amount: 500,
+            tax: Tax.include,
+            primary: true),
       ],
     ),
     Menu.create(
@@ -90,7 +115,12 @@ class MockMenuRepository implements MenuRepository {
       isOpenPrice: false,
       createdIn: 'pos',
       prices: [
-        const Price(taxRate: 10, taxType: TaxType.normal, amount: 300, tax: Tax.include, primary: true),
+        const Price(
+            taxRate: 10,
+            taxType: TaxType.normal,
+            amount: 300,
+            tax: Tax.include,
+            primary: true),
       ],
     ),
   ];

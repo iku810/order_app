@@ -4,8 +4,12 @@ part 'token_data.g.dart';
 
 @JsonSerializable()
 class TokenData {
-  const TokenData(
-      {this.accessToken, this.tokenType, this.expiresIn, this.scope,});
+  const TokenData({
+    this.accessToken,
+    this.tokenType,
+    this.expiresIn,
+    this.scope,
+  });
 
   factory TokenData.fromJson(Map<String, dynamic> json) =>
       _$TokenDataFromJson(json);

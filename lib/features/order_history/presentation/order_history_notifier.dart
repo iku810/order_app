@@ -19,9 +19,7 @@ class OrderHistoryNotifier extends _$OrderHistoryNotifier {
       await ref
           .read(cancelOrderUsecaseProvider)
           .execute(tableUseId, orderItemIds: orderItemIds);
-      return ref
-          .read(fetchOrderHistoriesUsecaseProvider)
-          .execute(tableUseId);
+      return ref.read(fetchOrderHistoriesUsecaseProvider).execute(tableUseId);
     });
   }
 }

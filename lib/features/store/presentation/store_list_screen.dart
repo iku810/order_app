@@ -29,7 +29,8 @@ class StoreListScreen extends ConsumerWidget {
                     return ListTile(
                       title: Text(store.name),
                       trailing: const Icon(Icons.chevron_right),
-                      onTap: () => TableListRoute(storeId: store.id).go(context),
+                      onTap: () =>
+                          TableListRoute(storeId: store.id).go(context),
                     );
                   },
                 ),

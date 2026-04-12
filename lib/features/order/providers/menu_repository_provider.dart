@@ -9,5 +9,6 @@ part 'menu_repository_provider.g.dart';
 
 @riverpod
 MenuRepository menuRepository(Ref ref) {
-  return MenuRepositoryImpl(ref.watch(apiClientProvider), ref.watch(contractIdProvider));
+  return MenuRepositoryImpl(
+      ref.watch(apiClientProvider), ref.watch(contractIdProvider));
 }

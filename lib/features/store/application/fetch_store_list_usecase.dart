@@ -2,7 +2,6 @@ import '../domain/repository/store_repository.dart';
 import '../domain/store.dart';
 
 class FetchStoreListUsecase {
-
   FetchStoreListUsecase(this.repository);
   final StoreRepository repository;
 

@@ -7,7 +7,8 @@ import '../../shared/auth/domain/credentials.dart';
 class AuthDio {
   AuthDio(Credentials credentials) : dio = Dio() {
     final basicAuth = base64Encode(
-        (utf8.encode('${credentials.clientId}:${credentials.clientSecret}')),);
+      (utf8.encode('${credentials.clientId}:${credentials.clientSecret}')),
+    );
     dio.options.headers['Authorization'] = 'Basic $basicAuth';
     dio.interceptors.add(
       LogInterceptor(

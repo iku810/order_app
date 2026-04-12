@@ -11,7 +11,7 @@ class StoreListNotifier extends _$StoreListNotifier {
   Future<StoreList> build() async {
     return _fetch();
   }
-  
+
   Future<void> refresh() async {
     state = const AsyncLoading();
     state = await AsyncValue.guard(_fetch);
