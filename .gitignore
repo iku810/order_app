@@ -138,3 +138,6 @@ app.*.map.json
 !/dev/ci/**/Gemfile.lock
 
 .vscode/launch.json
+
+# Serena MCP (personal)
+.serena/
