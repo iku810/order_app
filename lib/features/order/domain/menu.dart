@@ -100,8 +100,8 @@ class Price {
 }
 
 enum Tax {
-  include,
-  exclude,
+  included,
+  excluded,
   none,
 }
 

@@ -39,7 +39,11 @@ class OrderItemRequest {
   final SellingPriceRequest sellingPrice;
   final DiscountRequest? discount;
 
-  Map<String, dynamic> toJson() => _$OrderItemRequestToJson(this);
+  Map<String, dynamic> toJson() {
+    final json = _$OrderItemRequestToJson(this);
+    if (discount == null) json.remove('discount');
+    return json;
+  }
 }
 
 @JsonSerializable()

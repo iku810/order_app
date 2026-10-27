@@ -65,9 +65,9 @@ class MenuRepositoryImpl implements MenuRepository {
   Tax _toTax(String tax) {
     switch (tax) {
       case 'include':
-        return Tax.include;
+        return Tax.included;
       case 'exclude':
-        return Tax.exclude;
+        return Tax.excluded;
       case 'none':
         return Tax.none;
       default:

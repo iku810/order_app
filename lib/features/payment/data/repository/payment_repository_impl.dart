@@ -17,8 +17,10 @@ class PaymentRepositoryImpl implements PaymentRepository {
       tableUseId: tableUseId,
     );
 
-    final allItems =
-        tableUseResponse.orders.expand((order) => order.items).toList();
+    final allItems = tableUseResponse.orders
+        .expand((order) => order.items)
+        .where((item) => item.status != 'canceled')
+        .toList();
 
     final paymentItems = allItems.map((item) {
       final price = item.sellingPrice;

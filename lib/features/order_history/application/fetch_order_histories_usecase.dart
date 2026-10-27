@@ -6,6 +6,17 @@ class FetchOrderHistoriesUsecase {
 
   final OrderHistoryRepository _repository;
 
-  Future<List<OrderHistory>> execute(String tableUseId) =>
-      _repository.getOrderHistories(tableUseId);
+  Future<List<OrderHistory>> execute(String tableUseId) async {
+    final histories = await _repository.getOrderHistories(tableUseId);
+    return histories
+        .map(
+          (h) => OrderHistory(
+            orderId: h.orderId,
+            ordered: h.ordered,
+            tableUseId: h.tableUseId,
+            items: h.items.where((item) => item.status != 'canceled').toList(),
+          ),
+        )
+        .toList();
+  }
 }

@@ -14,7 +14,7 @@ class TableRepositoryImpl implements TableRepository {
     final response = await _apiClient.getStore(
       contractId: _contractId.value,
       storeId: storeId,
-      withTables: 'tables',
+      withTables: 'all',
     );
     return response.tables
             ?.map(
